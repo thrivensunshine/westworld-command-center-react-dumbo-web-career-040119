@@ -5,8 +5,15 @@ import { Radio, Icon, Card, Grid, Image, Dropdown, Divider } from 'semantic-ui-r
 
 class HostInfo extends Component {
   state = {
-    options: [{key: "some_area" text: "Some Area" value: "some_area"}, {key: "another_area" text: "Another Area" value: "another_area"}],
-    value: "some_area",
+
+    options: [
+      {key: 1, text: "high plains", value: 8} ,
+      {key: 2, text: "lowlands", value: 6},
+    {key: 3, text: "under construction", value: 8} ,
+  {key: 4, text: "pariah", value: 14} ,
+{key: 5, text: "python pass", value: 14} ,
+{key: 6, text: "badlands", value: 10}],
+    value: "some_area"
     // This state is just to show how the dropdown component works.
     // Options have to be formatted in this way (array of objects with keys of: key, text, value)
     // Value has to match the value in the object to render the right text.
@@ -23,7 +30,7 @@ class HostInfo extends Component {
   }
 
   toggle = () => {
-    console.log("The radio button fired");
+    this.props.validHost.active
   }
 
   render(){
@@ -31,7 +38,7 @@ class HostInfo extends Component {
       <Grid>
         <Grid.Column width={6}>
           <Image
-            src={ /* pass in the right image here */ }
+            src={this.props.validHost.imageUrl}
             floated='left'
             size='small'
             className="hostImg"
@@ -41,16 +48,16 @@ class HostInfo extends Component {
           <Card>
             <Card.Content>
               <Card.Header>
-                {"Bob"} | { true ? <Icon name='man' /> : <Icon name='woman' />}
-                { /* Think about how the above should work to conditionally render the right First Name and the right gender Icon */ }
+                {this.props.validHost.gender } | {this.props.validHost.gender === 'Male' ? <Icon name='man' /> : <Icon name='woman' />}
+
               </Card.Header>
               <Card.Meta>
                 <Radio
                   onChange={this.toggle}
                   label={"Active"}
-                  {/* Sometimes the label should take "Decommissioned". How are we going to conditionally render that? */}
+
                   checked={true}
-                  {/* Checked takes a boolean and determines what position the switch is in. Should it always be true? */}
+
                   slider
                 />
               </Card.Meta>
@@ -72,3 +79,14 @@ class HostInfo extends Component {
 }
 
 export default HostInfo
+
+
+//this.props.validHost.active
+
+// {key: "some_area" text: "Some Area" value: "some_area"}, {key: "another_area" text: "Another Area" value: "another_area"}
+
+  // { /* Think about how the above should work to conditionally render the right First Name and the right gender Icon */ }
+
+    // {/* Sometimes the label should take "Decommissioned". How are we going to conditionally render that? */}
+
+  // {/* Checked takes a boolean and determines what position the switch is in. Should it always be true? */}
